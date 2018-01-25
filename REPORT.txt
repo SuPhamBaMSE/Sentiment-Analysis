@@ -1,0 +1,66 @@
+I) Lists the Accuracy (10 accuracies of 10 runs and final average accuracy for each model)
+- Confusion matrix:
+1. Multinominal Naive Bayes:
+array([[176,  30],
+       [ 41, 153]]),
+2. SVC:
+array([[166,  40],
+       [ 25, 169]]),
+3. Logistic Regression:
+array([[152,  54],
+       [ 32, 162]])
+
+- k-Fold Cross Validation:
+1. Accuracy of Multinominal Naive Bayes
+0.832298136646
+0.801242236025
+0.844720496894
+0.807453416149
+0.80625
+0.7375
+0.836477987421
+0.830188679245
+0.786163522013
+0.823899371069
+Average: 81.061938454627125
+
+2. Accuracy of SVM
+0.894409937888
+0.863354037267
+0.88198757764
+0.850931677019
+0.8125
+0.79375
+0.88679245283
+0.874213836478
+0.849056603774
+0.867924528302
+Average: 85.749206511973128
+
+3. Accuracy of Logistic Regression
+0.850931677019
+0.795031055901
+0.875776397516
+0.776397515528
+0.775
+0.75
+0.842767295597
+0.77358490566
+0.761006289308
+0.811320754717
+Average: 80.118158912457517
+
+II) Features: Terms and their frequencies.
+That means: each individual token occurrence frequency (normalized or not) is treated as a feature.
+We call vectorization (via CountVectorizer) the general process of turning a collection of text documents into numerical feature vectors.
+This specific strategy (tokenization, counting and normalization) is called the Bag of Words or “Bag of n-grams” representation.
+Ater that we convert raw frequency counts into TF-IDF values (via TfidfTransformer)
+
+III) Models
+- Multinominal Naive Bayes
+- LinearSVC
+- LogisticRegression
+
+VI) Library
+- sklearn
+- nltk

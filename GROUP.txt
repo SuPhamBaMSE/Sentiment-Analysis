@@ -1,0 +1,16 @@
+Our group includes:
+1. Members
+- Su Pham Ba MSE0064
+- Papa
+2. Responsibilitie
+- Su Pham Ba:
+    + Study requirement
+    + Find and research available machine learning library (scikit-learn, nltk)
+    + Design code, fix bug
+    + Implement cross_validation function
+- Papa:
+    + Study requirement
+    + Data pre-processing (Feature exaction: CountVectorizer and TfidfTransformer)
+    + Learn to use library
+    + Fix bug
+    + Write the report and document
