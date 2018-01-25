@@ -1,4 +1,4 @@
-I) Lists the Accuracy (10 accuracies of 10 runs and final average accuracy for each model)
+﻿I) Lists the Accuracy (10 accuracies of 10 runs and final average accuracy for each model)
 - Confusion matrix:
 1. Multinominal Naive Bayes:
 array([[176,  30],
@@ -50,7 +50,11 @@ Average: 85.749206511973128
 0.811320754717
 Average: 80.118158912457517
 
-II) Features: Terms and their frequencies.
+II) 
+===FAKE MOVIE REVIEWS===
+Enter movie reviews: accident
+'accident' => neg 
+Features: Terms and their frequencies.
 That means: each individual token occurrence frequency (normalized or not) is treated as a feature.
 We call vectorization (via CountVectorizer) the general process of turning a collection of text documents into numerical feature vectors.
 This specific strategy (tokenization, counting and normalization) is called the Bag of Words or “Bag of n-grams” representation.
