@@ -80,13 +80,6 @@ def main():
         accuracies_display(cross_validation(log_reg_classifier, docs_train, y_train))
 
         # Test
-        # fake movie reviews
-        # reviews_new = ['This movie was excellent', 'Absolute joy ride',
-        #                'Steven Seagal was terrible', 'Steven Seagal shined through.',
-        #                'This was certainly a movie', 'Two thumbs up', 'I fell asleep halfway through',
-        #                "We can't wait for the sequel!!", '!', '?', 'I cannot recommend this highly enough',
-        #                'instant classic.', 'Steven Seagal was amazing. His performance was Oscar-worthy.']
-
         reviews_new = []
         print '\n===FAKE MOVIE REVIEWS==='
 
