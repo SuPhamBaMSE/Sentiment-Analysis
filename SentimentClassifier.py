@@ -1,10 +1,15 @@
 import nltk
 import os
+import time
 from sklearn.datasets import load_files
 from sklearn.metrics import confusion_matrix
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.model_selection import cross_val_score
+
+import re
+from nltk.corpus import stopwords
+from nltk.stem.porter import PorterStemmer
 
 
 def cross_validation(classifier, docs_train, y_train):
@@ -19,19 +24,37 @@ def accuracies_display(accuracies):
     print ('Average: %r' % (average_accuracy * 100))
 
 
+def preprocess(review_list):
+    corpus = []
+    for i in review_list:
+        review = re.sub('[^a-zA-Z]', ' ', i)
+        review = review.split()
+        ps = PorterStemmer()
+        review = [ps.stem(word) for word in review]  # if not word in set(stopwords.words('english'))
+        review = ' '.join(review)
+        corpus.append(review)
+
+    return corpus
+
+
 def main():
     movie_dir = str(raw_input("Enter the path of your data set (ex: /Users/susu/Desktop/SAGroup4/movie_reviews): "))
 
     if os.path.isdir(movie_dir):
+        time.clock()
         # Importing the data set
         movie_train = load_files(movie_dir, shuffle=True)
 
-        # Feature Extraction
-        movie_vec = CountVectorizer(min_df=2, tokenizer=nltk.word_tokenize)
+        # Cleaning the texts
+        corpus = preprocess(movie_train.data)
 
+        # Creating the Bag of Words model
+        # movie_vec = CountVectorizer(min_df=2, tokenizer=nltk.word_tokenize)
+        movie_vec = CountVectorizer(min_df=2)
         # data set turned into sparse vector of word frequency counts
-        movie_counts = movie_vec.fit_transform(movie_train.data)
+        movie_counts = movie_vec.fit_transform(corpus)
         # print movie_vec.get_feature_names()
+        # print movie_counts.shape
 
         # Convert raw frequency counts into TF-IDF (Term Frequency -- Inverse Document Frequency) values
         tfidf_transformer = TfidfTransformer()
@@ -41,6 +64,10 @@ def main():
         from sklearn.model_selection import train_test_split
         docs_train, docs_test, y_train, y_test = train_test_split(movie_tfidf, movie_train.target, test_size=0.20,
                                                                   random_state=12)
+        # from sklearn.preprocessing import Normalizer
+        # normalizer = Normalizer()
+        # docs_train = normalizer.fit_transform(docs_train)
+        # docs_test = normalizer.transform(docs_test)
 
         # Fitting Naive Bayes to the Training set
         from sklearn.naive_bayes import MultinomialNB
@@ -78,6 +105,8 @@ def main():
 
         print '\n3. Accuracy of Logistic Regression'
         accuracies_display(cross_validation(log_reg_classifier, docs_train, y_train))
+
+        print 'Time: ' + str(time.clock()) + ' sec'
 
         # Test
         reviews_new = []
